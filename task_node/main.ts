@@ -1,8 +1,8 @@
 import app from './app'
 
 function main() {
-    app.listen(300, 'localhost', ()=> {
-        console.log('Server running at port 300')
+    app.listen(3000, 'localhost', ()=> {
+        console.log('Server running at port 3000')
     })
 }
 

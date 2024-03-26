@@ -19,6 +19,36 @@ class UsuarioController {
             return res.status(500)
         }
     }
+
+    async findById(req: Request, res: Response) {
+        try{
+            const usuario = await new UsuarioService().findById(req.params.id);
+             res.status(200).json(usuario);
+        }catch(error){
+            return res.status(500);
+        }
+    }
+
+    async delete(req: Request, res: Response) {
+        try{
+            const usuario = await new UsuarioService().delete(req.params.id);
+            return res.status(200).json(usuario);
+        }catch(error){
+            return res.status(500);
+        }
+    }
+
+    async update(req: Request, res: Response) {
+        try{
+            const usuario = await new UsuarioService().update(req.params.id,req.body);
+            return res.status(200).json(usuario);
+        }catch(error){
+            return res.status(500);
+        }
+    }
+
+
+
 }
 
 export default new UsuarioController()
