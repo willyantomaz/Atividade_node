@@ -1,7 +1,8 @@
 import usuarioModel from '../schema/usuario.schema';
+import { Usuario } from "../interface/usuario.interface";
 
 export class UsuarioService {
-    async create(usuario: any) {
+    async create(usuario: Usuario) {
         const createUsuario = await usuarioModel.create(usuario);
         return createUsuario;
     }
@@ -16,13 +17,13 @@ export class UsuarioService {
         return findIdUsuario;
     }
 
-    async delete(id: String){
+    async delete(id: String) {
         const deleteUsuário = await usuarioModel.findByIdAndDelete(id);
         return deleteUsuário;
     }
 
-    async update(id: String, usuario: any) {
-        const updateUsuario = await usuarioModel.findByIdAndUpdate(id,usuario,{new:true});
+    async update(id: String, usuario: Usuario) {
+        const updateUsuario = await usuarioModel.findByIdAndUpdate(id, usuario, { new: true });
         return updateUsuario;
     }
 
