@@ -26,4 +26,9 @@ export class TarefasService {
         return updateTarefa;
     }
 
+    async getUsuarioTarefa(userID: any) {
+        const tarefas = await tarefaModel.find({userID});
+        return tarefas;
+    }
+
 }

@@ -47,6 +47,17 @@ class CategoriaController {
         }
     }
 
+    async findCatUs(req: Request, res: Response){
+        try {
+            const categoria = await new CategoriaService().findCatUsu(req.params.userID);
+            return res.status(200).json(categoria);
+        } catch (error) {
+            return res.status(500);
+        }
+    }
+   
+
+
 
 
 }

@@ -26,4 +26,9 @@ export class CategoriaService {
         return updateCategoria;
     }
 
+    async findCatUsu(userID: any){
+        const catUsu = await categoriaModel.find({userID});
+        return catUsu;
+    }
+
 }

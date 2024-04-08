@@ -47,6 +47,14 @@ class TarefasController {
         }
     }
 
+    async findBYUserTarefa(req: Request, res: Response) {
+        try {
+            const tarefa = await new TarefasService().getUsuarioTarefa(req.params.userID);
+            res.status(200).json(tarefa);
+        } catch (error) {
+            return res.status(500);
+        }
+    }
 
 
 }

@@ -29,24 +29,24 @@ Requisitos das Rotas (OPICIONAL - FAÇA POR ÚLTIMO):
 
 Autenticação:
 
-Rota de registro de usuário.
+Rota de registro de usuário. OK.
 Rota de login de usuário.
 
 Tarefas:
 
-Rota para criação de uma nova tarefa.
-Rota para listar todas as tarefas de um usuário.
-Rota para obter detalhes de uma tarefa específica.
-Rota para atualizar uma tarefa existente.
-Rota para excluir uma tarefa.
+Rota para criação de uma nova tarefa. OK.
+Rota para listar todas as tarefas de um usuário. OK.
+Rota para obter detalhes de uma tarefa específica. OK.
+Rota para atualizar uma tarefa existente. OK.
+Rota para excluir uma tarefa. OK.
 
 Categorias:
 
-Rota para criação de uma nova categoria.
-Rota para listar todas as categorias de um usuário.
-Rota para obter detalhes de uma categoria específica.
-Rota para atualizar uma categoria existente.
-Rota para excluir uma categoria.
+Rota para criação de uma nova categoria. OK.
+Rota para listar todas as categorias de um usuário. OK.
+Rota para obter detalhes de uma categoria específica. OK.
+Rota para atualizar uma categoria existente. OK.
+Rota para excluir uma categoria. OK.
 
 Funcionalidades Adicionais utilizando Métodos de Array:
 

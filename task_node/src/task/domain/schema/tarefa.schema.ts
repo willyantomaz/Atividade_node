@@ -1,6 +1,4 @@
 import { Schema, model } from "mongoose";
-import { Usuario } from "../interface/usuario.interface";
-import usuarioSchema from "./usuario.schema";
 import mongoose from "mongoose";
 
 export const tarefaSchema = new Schema({
@@ -24,9 +22,9 @@ export const tarefaSchema = new Schema({
     },
     userID: {
         type: mongoose.Types.ObjectId,
-        ref: 'Usuario'
+        ref: 'Usuario',
+        required: true
     }
-
 }, {
     timestamps: true
 })
