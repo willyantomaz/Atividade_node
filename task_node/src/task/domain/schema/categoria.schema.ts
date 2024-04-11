@@ -10,6 +10,11 @@ export const CategoriaSchema = new Schema({
          type: String, 
          required: true 
         },
+    //tarefas:[{
+    //    type: mongoose.Types.ObjectId,
+    //    ref: 'Tarefas',
+    //    required: true,        
+    //    }],    
     userID: {
         type: mongoose.Types.ObjectId,
         ref: 'Usuario',

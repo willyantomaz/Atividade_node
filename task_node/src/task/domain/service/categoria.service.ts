@@ -12,7 +12,7 @@ export class CategoriaService {
     }
 
     async findById(id: String) {
-        const findIdCategoria = await categoriaModel.findById(id);
+        const findIdCategoria = await categoriaModel.findById(id);//.populate("tarefas");
         return findIdCategoria;
     }
 
@@ -30,5 +30,7 @@ export class CategoriaService {
         const catUsu = await categoriaModel.find({userID});
         return catUsu;
     }
+
+   
 
 }

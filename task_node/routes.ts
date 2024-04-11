@@ -18,11 +18,15 @@ routes.delete('/categoria/delete/:id', categoriaController.delete)
 routes.get('/categoria/usuario/:userID', categoriaController.findCatUs)
 routes.get('/categoria/:id', categoriaController.findById)
 
+
+
 routes.get('/tarefa', tarefaController.findAll)
 routes.post('/tarefa', tarefaController.create)
 routes.put('/tarefa/update/:id', tarefaController.update)
 routes.delete('/tarefa/delete/:id', tarefaController.delete)
 routes.get('/tarefa/usuario/:userID', tarefaController.findBYUserTarefa)
+routes.get('/tarefa/categoria/:nomeCat', tarefaController.findByCategoria)
+routes.get('/tarefa/status/:status', tarefaController.findStatus)
 routes.get('/tarefa/:id', tarefaController.findById)
 
 

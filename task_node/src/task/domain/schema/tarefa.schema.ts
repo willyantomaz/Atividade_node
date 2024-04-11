@@ -14,7 +14,11 @@ export const tarefaSchema = new Schema({
         type: String,
         required: true
     },
-    // categoria: ,
+    categoria:{
+        type: mongoose.Types.ObjectId,
+        ref: "Categoria",
+        required: true
+    } ,
     statusTarefa: {
         type: String,
         enum: ["pendente", "em_andamento", "concluido"],

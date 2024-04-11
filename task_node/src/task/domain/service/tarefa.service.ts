@@ -1,4 +1,7 @@
+import path from 'path';
 import tarefaModel from '../schema/tarefa.schema';
+import { match } from 'assert';
+import categoriaModel from '../schema/categoria.schema';
 
 export class TarefasService {
     async create(tarefa: any) {
@@ -11,8 +14,23 @@ export class TarefasService {
         return findTarefas;
     }
 
+    async findStatus(status: String) {
+        const findTarefas = await tarefaModel.find({statusTarefa: status});
+        console.log(status);
+        return findTarefas;
+    }
+
+
+    async findFilterCat(nomeCat: String) {
+        const categoria = await categoriaModel.findOne({nome: nomeCat});
+        const findTarefas = await tarefaModel.find({categoria: {_id: categoria?._id}}).populate("categoria");
+        return findTarefas;
+    }
+
+
+
     async findById(id: String) {
-        const findIdTarefa = await tarefaModel.findById(id);
+        const findIdTarefa = await tarefaModel.findById(id).populate("categoria");
         return findIdTarefa;
     }
 
