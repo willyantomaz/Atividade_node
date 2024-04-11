@@ -19,9 +19,8 @@ routes.get('/categoria/usuario/:userID', categoriaController.findCatUs)
 routes.get('/categoria/:id', categoriaController.findById)
 
 
-
-routes.get('/tarefa', tarefaController.findAll)
 routes.post('/tarefa', tarefaController.create)
+routes.get('/tarefa', tarefaController.findAll)
 routes.put('/tarefa/update/:id', tarefaController.update)
 routes.delete('/tarefa/delete/:id', tarefaController.delete)
 routes.get('/tarefa/usuario/:userID', tarefaController.findBYUserTarefa)

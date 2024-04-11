@@ -24,6 +24,9 @@ export const tarefaSchema = new Schema({
         enum: ["pendente", "em_andamento", "concluido"],
         required: true
     },
+    dataConclusao: {
+        type: Date
+    },
     userID: {
         type: mongoose.Types.ObjectId,
         ref: 'Usuario',
