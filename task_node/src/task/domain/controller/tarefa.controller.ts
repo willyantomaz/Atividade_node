@@ -55,6 +55,15 @@ class TarefasController {
         }
     }
 
+    async findVencimento(req: Request, res: Response) {
+        try {
+            const tarefa = await new TarefasService().findVencimento();
+            res.status(200).json(tarefa);
+        } catch (error) {
+            return res.status(500);
+        }
+    }
+
     async delete(req: Request, res: Response) {
         try {
             const tarefa = await new TarefasService().delete(req.params.id);

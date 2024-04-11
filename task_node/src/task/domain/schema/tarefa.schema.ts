@@ -27,6 +27,10 @@ export const tarefaSchema = new Schema({
     dataConclusao: {
         type: Date
     },
+    vencimento:{
+        type: Date,
+        required: true,
+    },
     userID: {
         type: mongoose.Types.ObjectId,
         ref: 'Usuario',

@@ -1,6 +1,4 @@
-import path from 'path';
 import tarefaModel from '../schema/tarefa.schema';
-import { match } from 'assert';
 import categoriaModel from '../schema/categoria.schema';
 
 export class TarefasService {
@@ -14,9 +12,18 @@ export class TarefasService {
         return findTarefas;
     }
 
+    async findVencimento(){
+
+        const data = new Date();
+        const findTarefas = await tarefaModel.find({statusTarefa: {$in:["pendente","em_andamento"]},vencimento: { $gt: new Date() } });
+        
+
+        return findTarefas;
+        
+    }
+
     async findStatus(status: String) {
         const findTarefas = await tarefaModel.find({statusTarefa: status});
-        console.log(status);
         return findTarefas;
     }
 
@@ -42,6 +49,7 @@ export class TarefasService {
     async update(id: String, tarefa: any) {
         const updateTarefa = await tarefaModel.findByIdAndUpdate(id, tarefa, { new: true });
         return updateTarefa;
+        //colocar regra para caso atualize o status de concluido ele coloque a data de conclusão
     }
 
     async getUsuarioTarefa(userID: any) {
