@@ -9,6 +9,7 @@ routes.post('/usuario', usuarioController.create)
 routes.get('/usuario', usuarioController.findAll)
 routes.delete('/usuario/delete/:id', usuarioController.delete)
 routes.put('/usuario/update/:id', usuarioController.update)
+routes.get('/usuario/login',usuarioController.loginUser)
 routes.get('/usuario/:id', usuarioController.findById)
 
 routes.post('/categoria', categoriaController.create)

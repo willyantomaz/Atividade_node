@@ -1,5 +1,6 @@
 import usuarioModel from '../schema/usuario.schema';
 import { Usuario } from "../interface/usuario.interface";
+import usuarioSchema from '../schema/usuario.schema';
 
 export class UsuarioService {
     async create(usuario: Usuario) {
@@ -25,6 +26,11 @@ export class UsuarioService {
     async update(id: String, usuario: Usuario) {
         const updateUsuario = await usuarioModel.findByIdAndUpdate(id, usuario, { new: true });
         return updateUsuario;
+    }
+
+    async login(usuario: Usuario){
+        const usuarioLogin = await usuarioModel.findOne({username: usuario.username,senha: usuario.senha})
+        return usuarioLogin;
     }
 
 }

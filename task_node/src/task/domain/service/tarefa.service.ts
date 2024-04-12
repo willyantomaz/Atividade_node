@@ -4,6 +4,9 @@ import categoriaModel from '../schema/categoria.schema';
 export class TarefasService {
     async create(tarefa: any) {
         const createTarefas = await tarefaModel.create(tarefa);
+        if(createTarefas.statusTarefa == "concluido"){
+            createTarefas.dataConclusao = new Date();
+        }
         return createTarefas;
     }
 
@@ -15,10 +18,25 @@ export class TarefasService {
     async findVencimento(){
 
         const data = new Date();
-        const findTarefas = await tarefaModel.find({statusTarefa: {$in:["pendente","em_andamento"]},vencimento: { $gt: new Date() } });
-        
+        //const dataBr = new Date(data.toLocaleDateString("pt-BR"));
+        var vencidas;
 
-        return findTarefas;
+        const findTarefas = await tarefaModel.find({statusTarefa: {$in:["pendente","em_andamento"]}});
+        
+        findTarefas.forEach((tarefa) =>{
+           const venciData = tarefa.vencimento;
+
+           if(venciData <= data){
+            console.log("venceu"+tarefa)
+            vencidas = tarefa
+           }
+
+           
+
+        })
+        //terminar de testar
+        console.log(vencidas);
+        return vencidas;
         
     }
 
@@ -48,8 +66,10 @@ export class TarefasService {
 
     async update(id: String, tarefa: any) {
         const updateTarefa = await tarefaModel.findByIdAndUpdate(id, tarefa, { new: true });
+        if(updateTarefa?.statusTarefa == "concluido"){
+            updateTarefa.dataConclusao = new Date();
+        }
         return updateTarefa;
-        //colocar regra para caso atualize o status de concluido ele coloque a data de conclusão
     }
 
     async getUsuarioTarefa(userID: any) {

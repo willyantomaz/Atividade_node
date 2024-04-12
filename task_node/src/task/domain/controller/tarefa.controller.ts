@@ -7,7 +7,7 @@ class TarefasController {
             const tarefa = await new TarefasService().create(req.body)
             return res.status(201).json(tarefa)
         } catch (error) {
-            return res.status(500)
+            return res.status(500).json(error)
         }
     }
 
@@ -16,7 +16,7 @@ class TarefasController {
             const tarefa = await new TarefasService().findAll()
             return res.status(200).json(tarefa);
         } catch (error) {
-            return res.status(500)
+            return res.status(500).json(error)
         }
     }
 
@@ -25,7 +25,7 @@ class TarefasController {
             const tarefa = await new TarefasService().findById(req.params.id);
             res.status(200).json(tarefa);
         } catch (error) {
-            return res.status(500);
+            return res.status(500).json(error);
         }
     }
 
@@ -34,7 +34,7 @@ class TarefasController {
             const tarefa = await new TarefasService().findStatus(req.params.status);
             return res.status(200).json(tarefa);
         } catch (error) {
-            return res.status(500);
+            return res.status(500).json(error);
         }
     }
     async findByCategoria(req: Request, res: Response) {
@@ -42,7 +42,7 @@ class TarefasController {
             const tarefa = await new TarefasService().findFilterCat(req.params.nomeCat);
             res.status(200).json(tarefa);
         } catch (error) {
-            return res.status(500);
+            return res.status(500).json(error);
         }
     }
 
@@ -51,7 +51,7 @@ class TarefasController {
             const tarefa = await new TarefasService().getUsuarioTarefa(req.params.userID);
             res.status(200).json(tarefa);
         } catch (error) {
-            return res.status(500);
+            return res.status(500).json(error);
         }
     }
 
@@ -60,7 +60,7 @@ class TarefasController {
             const tarefa = await new TarefasService().findVencimento();
             res.status(200).json(tarefa);
         } catch (error) {
-            return res.status(500);
+            return res.status(500).json(error);
         }
     }
 
@@ -69,7 +69,7 @@ class TarefasController {
             const tarefa = await new TarefasService().delete(req.params.id);
             return res.status(200).json(tarefa);
         } catch (error) {
-            return res.status(500);
+            return res.status(500).json(error);
         }
     }
 
@@ -78,7 +78,7 @@ class TarefasController {
             const tarefa = await new TarefasService().update(req.params.id, req.body);
             return res.status(200).json(tarefa);
         } catch (error) {
-            return res.status(500);
+            return res.status(500).json(error);
         }
     }
 

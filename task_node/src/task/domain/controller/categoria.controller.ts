@@ -7,7 +7,7 @@ class CategoriaController {
             const categoria = await new CategoriaService().create(req.body)
             return res.status(201).json(categoria)
         } catch (error) {
-            return res.status(500)
+            return res.status(500).json(error)
         }
     }
 
@@ -16,7 +16,7 @@ class CategoriaController {
             const categoria = await new CategoriaService().findAll()
             return res.status(200).json(categoria);
         } catch (error) {
-            return res.status(500)
+            return res.status(500).json(error)
         }
     }
 
@@ -25,7 +25,7 @@ class CategoriaController {
             const categoria = await new CategoriaService().findById(req.params.id);
              res.status(200).json(categoria);
         }catch(error){
-            return res.status(500);
+            return res.status(500).json(error);
         }
     }
 
@@ -34,7 +34,7 @@ class CategoriaController {
             const categoria = await new CategoriaService().delete(req.params.id);
             return res.status(200).json(categoria);
         }catch(error){
-            return res.status(500);
+            return res.status(500).json(error);
         }
     }
 
@@ -43,7 +43,7 @@ class CategoriaController {
             const categoria = await new CategoriaService().update(req.params.id,req.body);
             return res.status(200).json(categoria);
         }catch(error){
-            return res.status(500);
+            return res.status(500).json(error);
         }
     }
 
@@ -52,7 +52,7 @@ class CategoriaController {
             const categoria = await new CategoriaService().findCatUsu(req.params.userID);
             return res.status(200).json(categoria);
         } catch (error) {
-            return res.status(500);
+            return res.status(500).json(error);
         }
     }
 

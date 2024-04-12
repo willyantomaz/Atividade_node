@@ -30,7 +30,7 @@ Requisitos das Rotas (OPICIONAL - FAÇA POR ÚLTIMO):
 Autenticação:
 
 Rota de registro de usuário. OK.
-Rota de login de usuário.
+Rota de login de usuário. OK.
 
 Tarefas:
 
