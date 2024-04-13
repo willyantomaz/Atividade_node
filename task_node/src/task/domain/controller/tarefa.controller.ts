@@ -51,13 +51,13 @@ class TarefasController {
             const tarefa = await new TarefasService().getUsuarioTarefa(req.params.userID);
             res.status(200).json(tarefa);
         } catch (error) {
-            return res.status(500).json(error);
+            return res.status(400).json(error);
         }
     }
 
     async findVencimento(req: Request, res: Response) {
         try {
-            const tarefa = await new TarefasService().findVencimento();
+            const tarefa = await new TarefasService().findVencimento(req.body.diaVencimento);
             res.status(200).json(tarefa);
         } catch (error) {
             return res.status(500).json(error);
@@ -81,6 +81,61 @@ class TarefasController {
             return res.status(500).json(error);
         }
     }
+
+    async totalTarefa(req: Request, res: Response){
+        try {
+            const tarefa = await new TarefasService().totalTarefas();
+            return res.status(200).json(tarefa);
+        } catch (error) {
+            return res.status(500).json(error);
+        }
+    }
+
+    async totalMaisRcente(req: Request, res: Response){
+        try {
+            const tarefa = await new TarefasService().tarefaRecente(req.params.userID);
+            return res.status(200).json(tarefa);
+        } catch (error) {
+            return res.status(500).json(error);
+        }
+    }
+
+    async totalMaisAntiga(req: Request, res: Response){
+        try {
+            const tarefa = await new TarefasService().tarefaAntiga(req.params.userID);
+            return res.status(200).json(tarefa);
+        } catch (error) {
+            return res.status(500).json(error);
+        }
+    }
+
+    async tarefasConcluidas(req: Request, res: Response){
+        try {
+            const tarefa = await new TarefasService().conclusaoTarefa();
+            return res.status(200).json(tarefa);
+        } catch (error) {
+            return res.status(500).json(error);
+        }
+    }
+
+    async descricaoMaior(req: Request, res: Response){
+        try {
+            const tarefa = await new TarefasService().descricaoMaior();
+            return res.status(200).json(tarefa);
+        } catch (error) {
+            return res.status(500).json(error);
+        }
+    }
+
+    async tarefasAgrupadas(req: Request, res: Response){
+        try {
+            const tarefa = await new TarefasService().tarefasAgrupa();
+            return res.status(200).json(tarefa);
+        } catch (error) {
+            return res.status(500).json(error);
+        }
+    }
+
 
    
 

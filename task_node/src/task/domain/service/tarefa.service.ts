@@ -4,7 +4,7 @@ import categoriaModel from '../schema/categoria.schema';
 export class TarefasService {
     async create(tarefa: any) {
         const createTarefas = await tarefaModel.create(tarefa);
-        if(createTarefas.statusTarefa == "concluido"){
+        if (createTarefas.statusTarefa == "concluido") {
             createTarefas.dataConclusao = new Date();
         }
         return createTarefas;
@@ -15,40 +15,31 @@ export class TarefasService {
         return findTarefas;
     }
 
-    async findVencimento(){
+    async findVencimento(diaVencimento: number) {
 
         const data = new Date();
-        //const dataBr = new Date(data.toLocaleDateString("pt-BR"));
-        var vencidas;
+        const dataVencendo = new Date();
+        dataVencendo.setDate(dataVencendo.getDate() + diaVencimento);
 
-        const findTarefas = await tarefaModel.find({statusTarefa: {$in:["pendente","em_andamento"]}});
-        
-        findTarefas.forEach((tarefa) =>{
-           const venciData = tarefa.vencimento;
 
-           if(venciData <= data){
-            console.log("venceu"+tarefa)
-            vencidas = tarefa
-           }
 
-           
+        const findTarefas = await tarefaModel.find({ statusTarefa: { $in: ["pendente", "em_andamento"] } });
 
-        })
-        //terminar de testar
-        console.log(vencidas);
-        return vencidas;
-        
+        const tarefazVenci = findTarefas.filter(tarefa => tarefa.vencimento >= data && tarefa.vencimento <= dataVencendo);
+
+        return tarefazVenci;
+
     }
 
     async findStatus(status: String) {
-        const findTarefas = await tarefaModel.find({statusTarefa: status});
+        const findTarefas = await tarefaModel.find({ statusTarefa: status });
         return findTarefas;
     }
 
 
     async findFilterCat(nomeCat: String) {
-        const categoria = await categoriaModel.findOne({nome: nomeCat});
-        const findTarefas = await tarefaModel.find({categoria: {_id: categoria?._id}}).populate("categoria");
+        const categoria = await categoriaModel.findOne({ nome: nomeCat });
+        const findTarefas = await tarefaModel.find({ categoria: { _id: categoria?._id } }).populate("categoria");
         return findTarefas;
     }
 
@@ -66,15 +57,63 @@ export class TarefasService {
 
     async update(id: String, tarefa: any) {
         const updateTarefa = await tarefaModel.findByIdAndUpdate(id, tarefa, { new: true });
-        if(updateTarefa?.statusTarefa == "concluido"){
+        if (updateTarefa?.statusTarefa == "concluido") {
             updateTarefa.dataConclusao = new Date();
         }
         return updateTarefa;
     }
 
-    async getUsuarioTarefa(userID: any) {
-        const tarefas = await tarefaModel.find({userID});
+    async getUsuarioTarefa(userID: String) {
+        const tarefas = await tarefaModel.find({ userID });
         return tarefas;
     }
 
+    async totalTarefas() {
+        const total = await tarefaModel.find().countDocuments();
+        return total;
+    }
+
+    async tarefaRecente(userID: any) {
+        const recente = await tarefaModel.findOne({ userID }).sort({ createdAt: -1 });
+        return recente;
+    }
+    async tarefaAntiga(userID: any) {
+        const recente = await tarefaModel.findOne({ userID }).sort({ createdAt: +1 });
+        return recente;
+    }
+
+    async conclusaoTarefa() {
+        const tarefasQTD = await this.totalTarefas()
+
+        const concluido = await tarefaModel.find({ statusTarefa: "concluido" }).countDocuments();
+        var media = (concluido / tarefasQTD) * 100;
+        return media;
+    }
+
+    async descricaoMaior() {
+        const descricao = await tarefaModel.find();
+
+        const descricaoMaior = descricao.reduce((atual, proximo) => {
+            if (atual && proximo && atual.descricao && proximo.descricao) {
+                return (atual.descricao.length > proximo.descricao.length) ? atual : proximo;
+            }
+
+            return atual;
+        });
+
+        return descricaoMaior;
+    }
+
+    async tarefasAgrupa() {
+
+        const tarefas = await tarefaModel.aggregate([
+            {
+                $group: {
+                    _id: "$categoria",
+                    tarefas: { $push: "$$ROOT" } 
+                }
+            }
+        ]);
+        return tarefas;
+    }
 }

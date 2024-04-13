@@ -27,7 +27,13 @@ routes.delete('/tarefa/delete/:id', tarefaController.delete)
 routes.get('/tarefa/usuario/:userID', tarefaController.findBYUserTarefa)
 routes.get('/tarefa/categoria/:nomeCat', tarefaController.findByCategoria)
 routes.get('/tarefa/status/:status', tarefaController.findStatus)
+routes.get('/tarefa/recente/:userID',tarefaController.totalMaisRcente)
+routes.get('/tarefa/antiga/:userID',tarefaController.totalMaisAntiga)
 routes.get('/tarefa/vencimento',tarefaController.findVencimento)
+routes.get('/tarefa/total',tarefaController.totalTarefa)
+routes.get('/tarefa/concluida',tarefaController.tarefasConcluidas)
+routes.get('/tarefa/descricaoMaior',tarefaController.descricaoMaior)
+routes.get('/tarefa/agrupar',tarefaController.tarefasAgrupadas)
 routes.get('/tarefa/:id', tarefaController.findById)
 
 

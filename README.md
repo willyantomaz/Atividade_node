@@ -9,7 +9,7 @@ Express ou Fastify
 ## [x] - Fazer a controller
 ## [x] - Criar as rotas no arquivo de rotas
 ## [x] - Testar as rotas
-## [] - Partir para as rotas com regra de negócio
+## [X] - Partir para as rotas com regra de negócio
 
 	
 Entidades:
@@ -52,14 +52,14 @@ Funcionalidades Adicionais utilizando Métodos de Array:
 
 Rota para filtrar tarefas por categoria. Ok.	
 Rota para listar tarefas concluídas / pendentes. Ok.
-Rota para listar tarefas que vencem em um determinado período.
-Rota para contar o número total de tarefas de um usuário.
-Rota para encontrar a tarefa mais recente de um usuário.
+Rota para listar tarefas que vencem em um determinado período. Ok
+Rota para contar o número total de tarefas de um usuário. Ok
+Rota para encontrar a tarefa mais recente de um usuário. Ok
 
-Rota para calcular a média de conclusão das tarefas.
-Rota para encontrar a tarefa com a descrição mais longa.
-Rota para agrupar tarefas por categoria.
-Rota para encontrar a tarefa mais antiga de um usuário.
+Rota para calcular a média de conclusão das tarefas.OK
+Rota para encontrar a tarefa com a descrição mais longa. OK
+Rota para agrupar tarefas por categoria. OK
+Rota para encontrar a tarefa mais antiga de um usuário. OK
 
 Observação:
 
